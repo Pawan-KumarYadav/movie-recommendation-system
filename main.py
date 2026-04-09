@@ -316,7 +316,7 @@ async def  recommand_genre(
     discover = await tmdb_get(
         "/discover/movie",
         {
-            "with_genre": genre_id,
+            "with_genres": genre_id,
             "language": "en-US",
             "sort_by" : "popularity.desc",
             "page":1,

@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-BASE_URL = "http://127.0.0.1:8000"
+BASE_URL = "https://movie-recommendation-system-6-75qk.onrender.com"
 
 st.set_page_config(page_title="Movie Recommender", layout="wide")
 
@@ -21,7 +21,7 @@ search_query = st.sidebar.text_input("Search Movie")
 # ---------------- SAFE FETCH FUNCTIONS ----------------
 def safe_request(url):
     try:
-        res = requests.get(url, timeout=5)
+        res = requests.get(url, timeout=30)
 
         if res.status_code != 200:
             st.error("❌ Backend error")
@@ -29,9 +29,9 @@ def safe_request(url):
 
         return res.json()
 
-    except:
-        st.error("⚠️ Backend not running! Start FastAPI server.")
-        return None
+    except Exception as e:
+     st.warning("⏳ Backend waking up... please wait 30-60 seconds")
+    return None
 
 
 def get_movies(category):
